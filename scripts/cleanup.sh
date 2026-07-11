@@ -1,13 +1,20 @@
 #!/usr/bin/env sh
-# Removes the ~/.claude symlinks created by setup.sh. Leaves anything this repo does not own.
+# Removes the ~/.claude symlinks created by setup.sh and unmodified local copies of them.
+# Modified copies and links into other repos are kept.
 set -e
 repo="$(cd "$(dirname "$0")/.." && pwd)"
 
 unlink_ours() {
     path="$1"
+    src="$2"
     [ -e "$path" ] || [ -L "$path" ] || return 0
     if [ ! -L "$path" ]; then
-        echo "kept (not a symlink): $path"
+        if diff -rq "$src" "$path" >/dev/null 2>&1; then
+            rm -rf "$path"
+            echo "removed copy: $path"
+        else
+            echo "kept (differs from repo): $path"
+        fi
         return 0
     fi
     case "$(readlink "$path")" in
@@ -16,9 +23,9 @@ unlink_ours() {
     esac
 }
 
-unlink_ours "$HOME/.claude/CLAUDE.md"
+unlink_ours "$HOME/.claude/CLAUDE.md" "$repo/global-CLAUDE.md"
 for d in "$repo"/claude-skills/*/; do
-    unlink_ours "$HOME/.claude/skills/$(basename "$d")"
+    unlink_ours "$HOME/.claude/skills/$(basename "$d")" "${d%/}"
 done
 
 if [ -f "$HOME/.claude/CLAUDE.md.bak" ] && [ ! -e "$HOME/.claude/CLAUDE.md" ]; then

@@ -44,7 +44,7 @@ macOS / Linux: same clone, then `sh ~/dotfiles/scripts/setup.sh`.
 
 Windows needs Developer Mode (or an admin shell) to create symlinks. Run setup from PowerShell, not Git Bash (`ln -s` in Git Bash silently copies instead of linking). Setup is safe to re-run any time: it backs up a real CLAUDE.md before replacing it, and links every skill in `claude-skills/`.
 
-To switch to a different config, run `scripts/cleanup.ps1` (macOS / Linux: `scripts/cleanup.sh`) first. It removes only the symlinks that point into this repo, leaves real files and links to other repos alone, and restores a backed-up CLAUDE.md if setup made one.
+To switch to a different config, run `scripts/cleanup.ps1` (macOS / Linux: `scripts/cleanup.sh`) first. It removes the CLAUDE.md link, every skill link that points into this repo, and unmodified local copies of the skills. Modified copies and links to other repos are kept, and a backed-up CLAUDE.md is restored if setup made one.
 
 ## Where should a rule go?
 
