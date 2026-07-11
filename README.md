@@ -1,6 +1,6 @@
-# Global Claude Code Config Repository 
+# Global Claude Code Config Repository
 
-Keep your global [Claude Code](https://claude.com/claude-code) setup the same on every device. This repo holds the global `CLAUDE.md` instruction file and custom skills, tracked with git and symlinked into `~/.claude/`. No secrets inside.
+A working global [Claude Code](https://claude.com/claude-code) setup you can copy: a global `CLAUDE.md` instruction file plus six reusable skills, tracked with git and symlinked into `~/.claude/` so every device stays in sync. Take the whole setup or just one skill. No secrets inside.
 
 **What is CLAUDE.md?** The instruction file Claude Code reads at the start of every session. The global copy at `~/.claude/CLAUDE.md` applies to every project on the machine.
 
@@ -15,7 +15,16 @@ Keep your global [Claude Code](https://claude.com/claude-code) setup the same on
 | `global-CLAUDE.md` | `~/.claude/CLAUDE.md` |
 | `claude-skills/<name>/` | `~/.claude/skills/<name>/` |
 
-Skills included: `adversarial-review`, `file-grouper`, `firestore-indexes`, `organize`, `readme-crafter`, `spec-driven-dev`.
+Every skill is standalone: copy its folder into `~/.claude/skills/` and it works.
+
+| Skill | What it does |
+|---|---|
+| `adversarial-review` | Reviews a doc (spec, plan, CLAUDE.md, config) with independent skeptics and reports verified findings by severity |
+| `file-grouper` | Reorganizes files and folders into logical groups without breaking references |
+| `firestore-indexes` | Keeps Firestore composite indexes in sync when queries change |
+| `organize` | Turns a rough prompt into a confirmed task brief, then executes it with an explore, plan, execute workflow |
+| `readme-crafter` | Writes or rewrites a README to work for humans, search engines, and AI answer engines (it wrote this one) |
+| `spec-driven-dev` | Breaks requirements docs into markdown specs and develops against them phase by phase |
 
 Two folders stay in the repo only, nothing links to them:
 
@@ -24,8 +33,10 @@ Two folders stay in the repo only, nothing links to them:
 
 ## Setup on a new machine
 
+Adopting this setup? Just clone and run setup below: the symlinks point at your local clone, and nothing changes unless you `git pull`. To keep your own edits synced across devices, click **Use this template** on GitHub and clone your copy instead, since pushing needs a repo you own.
+
 ```powershell
-git clone git@github.com:KennethChua1998/Claude.MD.git "$HOME\dotfiles"
+git clone https://github.com/KennethChua1998/GlobalClaude.MD.git "$HOME\dotfiles"
 & "$HOME\dotfiles\scripts\setup.ps1"
 ```
 
