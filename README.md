@@ -20,7 +20,7 @@ Skills included: `adversarial-review`, `file-grouper`, `firestore-indexes`, `org
 Two folders stay in the repo only, nothing links to them:
 
 - [docs/note.md](docs/note.md) - notes on the decisions behind this setup. Main ones: don't rebuild what Claude Code already has built in, and keep CLAUDE.md short, like a memory, not a manual.
-- `scripts/` - the setup scripts used in the next section.
+- `scripts/` - the setup and cleanup scripts used in the next section.
 
 ## Setup on a new machine
 
@@ -32,6 +32,8 @@ git clone git@github.com:KennethChua1998/Claude.MD.git "$HOME\dotfiles"
 macOS / Linux: same clone, then `sh ~/dotfiles/scripts/setup.sh`.
 
 Windows needs Developer Mode (or an admin shell) to create symlinks. Run setup from PowerShell, not Git Bash (`ln -s` in Git Bash silently copies instead of linking). Setup is safe to re-run any time: it backs up a real CLAUDE.md before replacing it, and links every skill in `claude-skills/`.
+
+To switch to a different config, run `scripts/cleanup.ps1` (macOS / Linux: `scripts/cleanup.sh`) first. It removes only the symlinks that point into this repo, leaves real files and links to other repos alone, and restores a backed-up CLAUDE.md if setup made one.
 
 ## Where should a rule go?
 
