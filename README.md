@@ -1,4 +1,4 @@
-# Claude.MD - Kenneth's Global Claude Code Config Repository 
+Global Claude Code Config Repository 
 
 Keep your global [Claude Code](https://claude.com/claude-code) setup the same on every device. This repo holds the global `CLAUDE.md` instruction file and custom skills, tracked with git and symlinked into `~/.claude/`. No secrets inside.
 
