@@ -27,6 +27,10 @@ build(deps): bump axios from 1.11.0 to 1.15.0
 
 **Bad:** `update`, `.`, `Chages and additions made.`, `Added stuff.`
 
+## Versioning
+
+Version **releases with SemVer git tags** (`v1.4.0`), never in commit subjects or bodies (a version belongs to a release, not a single commit). The commit *type* drives the bump: `feat` -> minor, `fix`/`perf`/`refactor` -> patch, `BREAKING CHANGE` -> major; `docs`/`style`/`chore`/`test`/`build`/`ci` don't bump. Prefer release tooling (`semantic-release`, `standard-version`) to compute and tag from commit types; tag by hand (`git tag -a v1.4.0`) otherwise. Never tag or bump without explicit instruction.
+
 ## Security - Never Trust the Client
 
 All validation, authorization, and business-rule enforcement lives server-side; clients (browsers, mobile apps, devices) are bypassed trivially with curl or dev tools. Client-side checks are UX polish only, added only when the identical rule already exists on the backend. Web-stack specifics live in the web projects' own CLAUDE.md files.
